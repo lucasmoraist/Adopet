@@ -45,44 +45,28 @@ npm i mongoose@6.2.6
 npm i mongodb
 ```
 
-# Endpoints
+## body-parser
+### Descrição
+Middleware de análise de corpo Node.js.
 
-## Cadastrar Tutor
-`POST` /tutores
+Analise os corpos das solicitações recebidas em um middleware antes de seus manipuladores, disponíveis na req.bodypropriedade.
 
-| campo | tipo | obriatório | descição
-| --- | :---: | :---: | ---
-| id| string | sim | é o id do tutor
-| nome | text | sim | nome do tutor
-| email | text | sim | receberá o email da conta do tutor
-| password | String | sim | receberá a senha da conta do tutor
-| telefone | Number | não | número do telefone para contato
-| cidade | text | não | cidade onde o tutor mora
-| sobre | text | não | informações a mais sobre o tutor
-
-**Códigos de Respostas**
-| código | descrição
-| --- | ---
-| 201 | tutor cadastrada
-| 400 | erro na validação de dados da requisição
-
-## Listar tutor
-`GET` /tutor/{id}
-
+### Comando para instalação
 ```
-{
-	"_id": "65329320732f4d05aa5b7092",
-	"nome": "Pedro Daniel",
-	"email": "pedro@gmail.com",
-	"password": "****",
-	"telefone": 1140028922,
-	"cidade": "São Paulo",
-	"sobre": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tincidunt sem et scelerisque elementum. Aliquam egestas ultricies sem, non euismod enim blandit sit amet. Nam faucibus massa eu pretium luctus. Vestibulum vehicula efficitur orci, vel rutrum nunc molestie"
-},
+npm i body-parser
 ```
 
-**Códigos de Respostas**
-| código | descrição
-| --- | ---
-| 200 | dados retornados no corpo da resposta
-| 404 | não foi encontrado tutor com id informado
+## sequelize/sequelize-cli/path
+- após instalação, rodar `npx sequelize-cli init` para criar arquitetura do projeto
+
+### Comando para instalação
+```
+npm i sequelize sequelize-cli path
+```
+
+### Comando para criar models
+- O `id` não é criado dentro da model, porém, é criado em migrations
+- Dentro do sequelize nós criamos as reagras dos atributos, como: notNull, auto increment, PK e FK
+```
+npx sequelize-cli model:create --name <nomeDaClasse> --attributes <atributosDaClasse>
+```
