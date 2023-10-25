@@ -13,12 +13,15 @@ module.exports = {
         type: Sequelize.STRING
       },
       idade: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       porte: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       caracteristicas: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {

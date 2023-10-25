@@ -10,12 +10,15 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       nome: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       telefone: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       endereco: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       pet_id:{
