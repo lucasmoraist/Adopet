@@ -18,6 +18,16 @@ module.exports = {
       endereco: {
         type: Sequelize.STRING
       },
+      pet_id:{
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: 'Pets', key: 'id' }
+      },
+      tutor_id:{
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: 'Tutores', key: 'id' }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
