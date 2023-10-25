@@ -70,3 +70,18 @@ npm i sequelize sequelize-cli path
 ```
 npx sequelize-cli model:create --name <nomeDaClasse> --attributes <atributosDaClasse>
 ```
+### Comando de migração do sequelize 
+- Cria as tabelas no banco
+```
+npx sequelize-cli db:migrate
+```
+
+### Comando para gerar Seed
+```
+npx sequelize-cli seed:generate --name <nomeDoArquivo>
+```
+
+### Comando para semear as tabelas do bd
+```
+npx sequelize-cli db:seed:all
+```
