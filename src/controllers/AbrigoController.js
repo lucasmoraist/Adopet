@@ -1,67 +1,60 @@
-const bd = require('../models')
+import db from '../config/db.js'
+import sql from 'mssql'
 
 class AbrigoController {
 
-    static async findAll(req, res){
+    static async findAll(req, res) {
         try {
-            const abrigos = await bd.Abrigos.findAll()
-            return res.status(200).json(abrigos)
-        } catch (e) {
-            return res.status(500).json(e.message)
+            await sql.connect(db);
+
+            const result = await sql.query('SELECT * FROM pets');
+
+            res.json(result.recordset);
+        } catch (err) {
+            console.error('Erro de conexão:', err);
+            res.status(500).send('Erro de conexão com o banco de dados');
         }
     }
 
-    static async findById(req, res){
-        const { id } = req.params
+    static async create(req, res) {
 
-        try{
-            const abrigo = await bd.Abrigos.findOne({
-                where: { id: Number(id) }
-            })
-            return res.status(200).json(abrigo)
-        } catch (e){
-            return res.status(500).json(e.message)
-        }
-    }
+        const { id, nome, telefone, endereco } = req.body;
 
-    static async create(req, res){
-        try {
-            const abrigo = await bd.Abrigos.create(req.body)
-            return res.status(200).json(abrigo)
-        }catch (e){
-            return res.status(500).json(e.message)
-        }
+        await sql.connect(db);
+
+        const result = await sql.query`INSERT INTO abrigo (id, nome, telefone, endereco) VALUES (${id}, ${nome}, ${telefone}, ${endereco})`;
+        res.json(result);
+    } catch(err) {
+        console.error('Erro ao criar o produto:', err);
+        res.status(500).send('Erro ao criar o produto');
     }
 
     static async update(req, res){
-        const { id } = req.params
-        const infos = req.body
+        try {
+            const { nome, telefone, endereco } = req.body;
 
-        try{
-            await bd.Abrigos.update(infos, {
-                where: { id: Number(id) }
-            })
-            const abrigo = await bd.Abrigos.findOne({
-                where: { id: Number(id) }
-            })
-            return res.status(200).json(abrigo)
-        } catch (e) {
-            return res.status(500).json(e.message)
+            const { id } = req.params;
+
+            await sql.connect(db);
+
+            const result = await sql.query`UPDATE abrigo SET nome = ${nome}, telefone = ${telefone}, endereco = ${endereco} WHERE id = ${id}`;
+            res.json(result);
+        } catch (err) {
+            res.status(500).send('Erro ao atualizar o registro', err);
         }
     }
 
     static async delete(req, res){
-        const { id } = req.params
-
-        try{
-            await bd.Abrigos.destory({
-                where: { id: Number(id) }
-            })
-            return res.status(200).send(`${id} excluido com sucesso`)
-        } catch(e){
-            return res.status(500).json(e.message)
-        }
+        try {
+            const { id } = req.params;
+            await sql.connect(db);
+            const result = await sql.query`DELETE FROM abrigo WHERE id = ${id}`;
+            res.json({ message: 'Registro excluído com sucesso' });
+        } catch (err) {
+            console.error('Erro ao excluir o registro:', err);
+            res.status(500).send('Erro ao excluir o registro');
+        } 
     }
 }
 
-module.exports = AbrigoController;
+export default AbrigoController

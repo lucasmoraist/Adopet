@@ -1,67 +1,60 @@
-const bd = require('../models')
+import db from '../config/db.js'
+import sql from 'mssql'
 
 class PetController {
 
-    static async findAll(req, res){
+    static async findAll(req, res) {
         try {
-            const pets = await bd.Pets.findAll()
-            return res.status(200).json(pets)
-        } catch (e) {
-            return res.status(500).json(e.message)
+            await sql.connect(db);
+
+            const result = await sql.query('SELECT * FROM pets');
+
+            res.json(result.recordset);
+        } catch (err) {
+            console.error('Erro de conexão:', err);
+            res.status(500).send('Erro de conexão com o banco de dados');
         }
     }
 
-    static async findById(req, res){
-        const { id } = req.params
+    static async create(req, res) {
 
-        try{
-            const pet = await bd.Pets.findOne({
-                where: { id: Number(id) }
-            })
-            return res.status(200).json(pet)
-        } catch (e){
-            return res.status(500).json(e.message)
-        }
-    }
+        const { id, nome, idade, porte, caracteristica } = req.body;
 
-    static async create(req, res){
-        try {
-            const pet = await bd.Pets.create(req.body)
-            return res.status(200).json(pet)
-        }catch (e){
-            return res.status(500).json(e.message)
-        }
+        await sql.connect(db);
+
+        const result = await sql.query`INSERT INTO pets (id, nome, idade, porte, caracteristica) VALUES (${id}, ${nome}, ${idade}, ${porte}, ${caracteristica})`;
+        res.json(result);
+    } catch(err) {
+        console.error('Erro ao criar o produto:', err);
+        res.status(500).send('Erro ao criar o produto');
     }
 
     static async update(req, res){
-        const { id } = req.params
-        const infos = req.body
+        try {
+            const { nome, idade, porte, caracteristica } = req.body;
 
-        try{
-            await bd.Pets.update(infos, {
-                where: { id: Number(id) }
-            })
-            const pet = await bd.Pets.findOne({
-                where: { id: Number(id) }
-            })
-            return res.status(200).json(pet)
-        } catch (e) {
-            return res.status(500).json(e.message)
+            const { id } = req.params;
+
+            await sql.connect(db);
+
+            const result = await sql.query`UPDATE pets SET nome = ${nome}, idade = ${idade}, porte = ${porte}, caracteristica = ${caracteristica} WHERE id = ${id}`;
+            res.json(result);
+        } catch (err) {
+            res.status(500).send('Erro ao atualizar o registro', err);
         }
     }
 
     static async delete(req, res){
-        const { id } = req.params
-
-        try{
-            await bd.Pets.destory({
-                where: { id: Number(id) }
-            })
-            return res.status(200).send(`${id} excluido com sucesso`)
-        } catch(e){
-            return res.status(500).json(e.message)
-        }
+        try {
+            const { id } = req.params;
+            await sql.connect(db);
+            const result = await sql.query`DELETE FROM pets WHERE id = ${id}`;
+            res.json({ message: 'Registro excluído com sucesso' });
+        } catch (err) {
+            console.error('Erro ao excluir o registro:', err);
+            res.status(500).send('Erro ao excluir o registro');
+        } 
     }
 }
 
-module.exports = PetController;
+export default PetController

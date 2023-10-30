@@ -1,13 +1,16 @@
-const bodyParser = require('body-parser')
+import bodyParser from 'body-parser'
+import pet from './petRoutes.js'
+import abrigo from './abrigoRoutes.js'
 
-const tutor = require('./tutorRoutes.js')
-const pet = require('./petRoutes.js')
-const abrigo = require('./abrigoRoutes.js')
 
-module.exports = app => {
+export default function routes(app){
+
+    app.route('/').get((req, res) => {
+        res.status(200).send({titulo: "Bem vindo a Adopet! :)"})
+    })
+
     app.use(
         bodyParser.json(),
-        tutor,
         pet,
         abrigo
     )
