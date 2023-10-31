@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "nome": "UIPA",
+        "telefone": 1234567890,
+        "endereco": "Rua A, 123"
+    },
+    {
+        "id": 2,
+        "nome": "Totós da Teté",
+        "telefone": 9876543210,
+        "endereco": "Avenida B, 456"
+    },
+    {
+        "id": 3,
+        "nome": "Adopet",
+        "telefone": 5555555555,
+        "endereco": "Rua C, 789"
+    },
+    {
+        "id": 4,
+        "nome": "Cobasi",
+        "telefone": 9998887777,
+        "endereco": "Avenida D, 101"
+    }
+]

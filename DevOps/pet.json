@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "nome": "Rex",
+        "idade": 3,
+        "porte": "Grande",
+        "caracteristica": "Pelagem dourada"
+    },
+    {
+        "id": 2,
+        "nome": "Luna",
+        "idade": 2,
+        "porte": "Médio",
+        "caracteristica": "Olhos azuis"
+    },
+    {
+        "id": 3,
+        "nome": "Bolinha",
+        "idade": 5,
+        "porte": "Pequeno",
+        "caracteristica": "Pelagem branca"
+    },
+    {
+        "id": 4,
+        "nome": "Max",
+        "idade": 4,
+        "porte": "Médio",
+        "caracteristica": "Manchas pretas"
+    },
+    {
+        "id": 5,
+        "nome": "Mia",
+        "idade": 6,
+        "porte": "Grande",
+        "caracteristica": "Pelagem cinza"
+    }
+]
