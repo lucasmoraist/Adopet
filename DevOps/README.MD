@@ -6,7 +6,7 @@
 `az login`
 
 ## Build Dockerfile
-`docker build -t adopep93267 .`
+`docker build -t adopet93267 .`
 
 ## Rodar localmente
 `docker run --name adopet93267 -d -p 3000:3000 adopet93267`
@@ -34,6 +34,8 @@
 ## ACR
 `az acr create --resource-group rg-adopet93267 --name adopet93267 --sku Basic`
 - Anotar: `loginServer` e `name`
+- adopet93267.azurecr.io
+- adopet93267
 
 ## Logando no acr para dar push e pull
 `az acr login --name adopet93267`
@@ -45,7 +47,7 @@
 `docker push adopet93267.azurecr.io/adopet93267:v1`
 
 ## Removendo imagem do ambiente local
-`docker rmi adopet93267.azurecr.io/tdsaude:v1 -f`
+`docker rmi adopet93267.azurecr.io/adopet93267:v1 -f`
 
 ## Removendo imagem antiga
 `docker image rm adopet93267`
@@ -57,3 +59,4 @@
 `az container create --resource-group rg-adopet93267 --name adopet93267 --image adopet93267.azurecr.io/adopet93267:v1 --cpu 1 --memory 1 --registry-login-server adopet93267.azurecr.io --registry-username <userDeAdm> --registry-password <senhaDeAdm> --ip-address Public --dns-name-label adopet93267 --ports 3000 80 8080`
 - Anotar: `fqdn` e `ip`
 - Para rodar na nuvem `adopet93267.eastus.azurecontainer.io:3000`
+- `52.226.47.46`
