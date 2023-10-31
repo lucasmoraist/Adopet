@@ -7,7 +7,7 @@ class AbrigoController {
         try {
             await sql.connect(db);
 
-            const result = await sql.query('SELECT * FROM pets');
+            const result = await sql.query('SELECT * FROM Abrigo');
 
             res.json(result.recordset);
         } catch (err) {
@@ -22,7 +22,7 @@ class AbrigoController {
 
         await sql.connect(db);
 
-        const result = await sql.query`INSERT INTO abrigo (id, nome, telefone, endereco) VALUES (${id}, ${nome}, ${telefone}, ${endereco})`;
+        const result = await sql.query`INSERT INTO Abrigo (id, nome, telefone, endereco) VALUES (${id}, ${nome}, ${telefone}, ${endereco})`;
         res.json(result);
     } catch(err) {
         console.error('Erro ao criar o produto:', err);
@@ -37,7 +37,7 @@ class AbrigoController {
 
             await sql.connect(db);
 
-            const result = await sql.query`UPDATE abrigo SET nome = ${nome}, telefone = ${telefone}, endereco = ${endereco} WHERE id = ${id}`;
+            const result = await sql.query`UPDATE Abrigo SET nome = ${nome}, telefone = ${telefone}, endereco = ${endereco} WHERE id = ${id}`;
             res.json(result);
         } catch (err) {
             res.status(500).send('Erro ao atualizar o registro', err);
@@ -48,7 +48,7 @@ class AbrigoController {
         try {
             const { id } = req.params;
             await sql.connect(db);
-            const result = await sql.query`DELETE FROM abrigo WHERE id = ${id}`;
+            const result = await sql.query`DELETE FROM Abrigo WHERE id = ${id}`;
             res.json({ message: 'Registro excluído com sucesso' });
         } catch (err) {
             console.error('Erro ao excluir o registro:', err);

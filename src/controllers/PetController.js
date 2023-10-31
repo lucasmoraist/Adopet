@@ -7,7 +7,7 @@ class PetController {
         try {
             await sql.connect(db);
 
-            const result = await sql.query('SELECT * FROM pets');
+            const result = await sql.query('SELECT * FROM Pet');
 
             res.json(result.recordset);
         } catch (err) {
@@ -22,7 +22,7 @@ class PetController {
 
         await sql.connect(db);
 
-        const result = await sql.query`INSERT INTO pets (id, nome, idade, porte, caracteristica) VALUES (${id}, ${nome}, ${idade}, ${porte}, ${caracteristica})`;
+        const result = await sql.query`INSERT INTO Pet (id, nome, idade, porte, caracteristica) VALUES (${id}, ${nome}, ${idade}, ${porte}, ${caracteristica})`;
         res.json(result);
     } catch(err) {
         console.error('Erro ao criar o produto:', err);
@@ -37,7 +37,7 @@ class PetController {
 
             await sql.connect(db);
 
-            const result = await sql.query`UPDATE pets SET nome = ${nome}, idade = ${idade}, porte = ${porte}, caracteristica = ${caracteristica} WHERE id = ${id}`;
+            const result = await sql.query`UPDATE Pet SET nome = ${nome}, idade = ${idade}, porte = ${porte}, caracteristica = ${caracteristica} WHERE id = ${id}`;
             res.json(result);
         } catch (err) {
             res.status(500).send('Erro ao atualizar o registro', err);
@@ -48,7 +48,7 @@ class PetController {
         try {
             const { id } = req.params;
             await sql.connect(db);
-            const result = await sql.query`DELETE FROM pets WHERE id = ${id}`;
+            const result = await sql.query`DELETE FROM Pet WHERE id = ${id}`;
             res.json({ message: 'Registro excluído com sucesso' });
         } catch (err) {
             console.error('Erro ao excluir o registro:', err);
