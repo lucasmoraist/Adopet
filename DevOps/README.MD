@@ -8,15 +8,8 @@
 ## Build Dockerfile
 `docker build -t adopep93267 .`
 
-## Grupo de recursos azure
-`az group create --name rg-adopet93267 --location eastus`
-
-## ACR
-`az acr create --resource-group rg-adopet93267 --name adopet93267 --sku Basic`
-- Anotar: `loginServer` e `name`
-
 ## Rodar localmente
-`docker run adopet93267 -d -p 3000:3000 adopet93267`
+`docker run --name adopet93267 -d -p 3000:3000 adopet93267`
 
 ## Endpoints 
 `localhost:3000`
@@ -34,6 +27,13 @@
 
 ## Removendo container
 `docker rm adopet93267 -f`
+
+## Grupo de recursos azure
+`az group create --name rg-adopet93267 --location eastus`
+
+## ACR
+`az acr create --resource-group rg-adopet93267 --name adopet93267 --sku Basic`
+- Anotar: `loginServer` e `name`
 
 ## Logando no acr para dar push e pull
 `az acr login --name adopet93267`
