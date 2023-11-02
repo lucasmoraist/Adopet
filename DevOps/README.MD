@@ -34,8 +34,6 @@
 ## ACR
 `az acr create --resource-group rg-adopet93267 --name adopet93267 --sku Basic`
 - Anotar: `loginServer` e `name`
-- adopet93267.azurecr.io
-- adopet93267
 
 ## Logando no acr para dar push e pull
 `az acr login --name adopet93267`
@@ -59,4 +57,3 @@
 `az container create --resource-group rg-adopet93267 --name adopet93267 --image adopet93267.azurecr.io/adopet93267:v1 --cpu 1 --memory 1 --registry-login-server adopet93267.azurecr.io --registry-username <userDeAdm> --registry-password <senhaDeAdm> --ip-address Public --dns-name-label adopet93267 --ports 3000 80 8080`
 - Anotar: `fqdn` e `ip`
 - Para rodar na nuvem `adopet93267.eastus.azurecontainer.io:3000`
-- `52.226.47.46`
