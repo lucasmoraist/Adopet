@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "root",
-    "password": "DtNasc#110104",
+    "username": "user",
+    "password": "password",
     "database": "adopet",
     "host": "127.0.0.1",
     "dialect": "mysql"
